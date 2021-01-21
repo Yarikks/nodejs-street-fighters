@@ -1,0 +1,35 @@
+.fighter-preview___root {
+  display: flex;
+  flex-direction: row;
+  flex-basis: 400px;
+  height: 350px;
+}
+
+.fighter-preview___right {
+  align-items: flex-end;
+}
+
+.fighter-preview___left {
+  align-items: flex-start;
+}
+
+.fighter-preview___img {
+  user-select: none;
+}
+
+.fighter-preview___right img {
+  transform: scaleX(-1);
+}
+
+.fighter-info__block {
+  align-self: start;
+  font-size: 18px;
+  color: black;
+  border: 1px solid black;
+  border-radius: 4px;
+  padding: 10px;
+  line-height: 1.5;
+  width: 150px;
+  margin-top: 10px;
+  justify-content: center;
+}

@@ -18,6 +18,12 @@ const validate = (req) => {
     const { name } = item;
     const id = req.params.id ? req.params.id : "";
 
+    if(!isValidImage(item)){
+        item.source = fighter.source;
+    }
+    if (!isValidHealth(item)) {
+        item.health = fighter.health;
+    }
     if (isUsed({ name }, id)) {
         throw Error('This name is already in use.');
     }
@@ -26,9 +32,6 @@ const validate = (req) => {
     }
     if (!isValidName(item)) {
         throw Error('Name field cannot be empty.');
-    }
-    if (!isValidHealth(item)) {
-        throw Error('Health must be a number and be in range from 1 to 100');
     }
     if (!isValidPower(item)) {
         throw Error('Power must be a number and be in range from 1 to 100');
@@ -45,6 +48,15 @@ const isUsed = (search, id) => {
     }
     const isAnotherPerson = !(id === item.id);
     return isAnotherPerson;
+}
+
+const isValidImage = ({source}) => {
+    source = removeSpaces(source);
+    const extention = source.slice((source.lastIndexOf(".") - 1 >>> 0) + 2);
+    if(['png', 'jpg', 'gif'].includes(extention)){
+        return true;
+    }
+    return false;
 }
 
 const isValidName = ({ name }) => {

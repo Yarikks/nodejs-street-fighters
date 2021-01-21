@@ -6,6 +6,7 @@ import Fighter from '../fighter';
 import { Button } from '@material-ui/core';
 
 import './fight.css'
+import renderArena from '../battle/src/javascript/components/arena';
 
 class Fight extends React.Component {
     state = {
@@ -22,7 +23,7 @@ class Fight extends React.Component {
     }
 
     onFightStart = () => {
-        
+        renderArena([this.state.fighter1, this.state.fighter2]);
     }
 
     onCreate = (fighter) => {
@@ -57,15 +58,20 @@ class Fight extends React.Component {
 
     render() {
         const  { fighter1, fighter2 } = this.state;
+
         return (
             <div id="wrapper">
                 <NewFighter onCreated={this.onCreate} />
                 <div id="figh-wrapper">
-                    <Fighter selectedFighter={fighter1} onFighterSelect={this.onFighter1Select} fightersList={this.getFighter1List() || []} />
+                    <Fighter selectedFighter={fighter1} onFighterSelect={this.onFighter1Select} fightersList={this.getFighter1List() || []} className="fighter-preview___left" />
                     <div className="btn-wrapper">
-                        <Button onClick={this.onFightStart} variant="contained" color="primary">Start Fight</Button>
+                        {fighter1 && fighter2 ?
+                            <Button onClick={this.onFightStart} variant="contained" color="primary">Start Fight</Button>
+                            : 
+                            <Button onClick={this.onFightStart} variant="contained" color="primary" disabled>Start Fight</Button>
+                        }
                     </div>
-                    <Fighter selectedFighter={fighter2} onFighterSelect={this.onFighter2Select} fightersList={this.getFighter2List() || []} />
+                    <Fighter selectedFighter={fighter2} onFighterSelect={this.onFighter2Select} fightersList={this.getFighter2List() || []} className="fighter-preview___right" />
                 </div>
             </div>
         );

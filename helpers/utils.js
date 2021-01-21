@@ -5,10 +5,10 @@ const removeSpaces = (text) => {
 
 const allPropsFilled = (item, model) => {
     const {id, ...props} = model;
-    const itemKeys = Object.keys(item);
-    const modelKeys = Object.keys(props);
+    const itemKeys = Object.keys(item).sort();
+    const modelKeys = Object.keys(props).sort();
     const isSameKeys = JSON.stringify(itemKeys) === JSON.stringify(modelKeys);
-    
+
     return isSameKeys;
 }
 

@@ -9,7 +9,7 @@ const router = Router();
 
 router.get('/', (req, res, next) => {
     try {
-        let data = UserService.getAll();
+        const data = UserService.getAll();
         res.data = data;
     } catch (err) {
         res.err = err;
@@ -20,8 +20,8 @@ router.get('/', (req, res, next) => {
 
 router.get('/:id', (req, res, next) => {
     try {
-        let id = req.params.id;
-        let data = UserService.getOne(id);
+        const id = req.params.id;
+        const data = UserService.getOne(id);
         res.data = data;
     } catch(err){
         res.err = err;
